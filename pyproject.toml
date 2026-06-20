@@ -1,0 +1,5 @@
+[tool.mypy]
+strict = true
+# Or, if you want to be granular about missing hits:
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
