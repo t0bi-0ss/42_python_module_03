@@ -5,10 +5,10 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print(
             "No scores provided. Usage: python3 ft_score_analytics.py",
-            " <score1> <score2> ..."
+            " <score1> <score2> ...",
         )
     scores = []
-    for item in sys.argv[1:]:    
+    for item in sys.argv[1:]:
         try:
             score = int(item)
             score_l = [score]
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     if not len(scores):
         print(
             "No scores provided. Usage: python3 ft_score_analytics.py",
-            " <score1> <score2> ..."
+            " <score1> <score2> ...",
         )
     else:
         print(scores)
