@@ -43,15 +43,15 @@ def common_achievements(
 
 def unique_achievement(
         target_set: set[str],
-        *rest_of_sets: set[str]
+        players_achievements: dict[str, set[str]]
         ) -> set[str]:
     """Find unique achivement in target_set compared to
-    all other passed sets"""
+    all other sets in passed dict"""
     if (
-        not target_set or not rest_of_sets
+        not target_set or not players_achievements
     ):
         return set()
-    for a_set in rest_of_sets:
+    for a_set in players_achievements.values():
         target_set.difference_update(a_set)
     return target_set
 
@@ -73,6 +73,7 @@ def missing_achievements(
 def distinct_achievements(
         players_achievements: dict[str, set[str]]
         ) -> set[str]:
+    """Returns all achivements among all players"""
     if (
         not players_achievements
     ):
@@ -103,5 +104,9 @@ if __name__ == "__main__":
     )
     print(
         "\nCommon achievements: ",
-
+        common_achievements(players_achievements)
     )
+    print()
+    for key, value in players_achievements.items():
+        print(f"Only {key} has: ", end="")
+        print(unique_achievement())
