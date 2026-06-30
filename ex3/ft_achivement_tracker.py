@@ -41,7 +41,7 @@ def unique_achievement(
         target_set: set[str],
         *rest_of_sets: set[str]
         ) -> set[str]:
-    """Find unique achivement in target_set among
+    """Find unique achivement in target_set compared to
     all other passed sets"""
     if (
         not target_set or not rest_of_sets
@@ -50,6 +50,20 @@ def unique_achievement(
     for a_set in rest_of_sets:
         target_set.difference_update(a_set)
     return target_set
+
+
+def missing_achievements(
+        target_set: set[str],
+        achievemets_set: set[str]
+        ) -> set[str]:
+    """Finds missing achivements in target_set
+    considering achievements_set"""
+    if (
+        not target_set
+        or not achievemets_set
+    ):
+        return set()
+    return achievemets_set.difference(target_set)
 
 
 if __name__ == "__main__":
