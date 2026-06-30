@@ -68,4 +68,8 @@ if __name__ == "__main__":
     print("Distance to center: " + f"{distance_to_center_1:.4f}\n")
     print("Get a second set of coordinates")
     coordinates_2 = get_player_pos()
-    
+    print(
+        "Distance between the 2 sets of coordinates: ",
+        end=""
+    )
+    print(f"{distance_between_coordinates(coordinates_1, coordinates_2):.4f}")
