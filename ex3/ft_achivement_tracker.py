@@ -3,7 +3,9 @@ import random
 """Module for a players achievement system"""
 
 
-def gen_player_achievements(all_achievements: bool = False) -> set[str]:
+def gen_player_achievements(
+        all_achievements: bool = False
+        ) -> set[str]:
     """Generate a random set of achievements for a player"""
     achievements = {
         'Crafting Genius',
@@ -67,4 +69,11 @@ def missing_achievements(
 
 
 if __name__ == "__main__":
-    print(gen_player_achievements())
+    players = ["Alice", "Bob", "Charlie", "Dylan"]
+    players_achievements = {
+        name: gen_player_achievements() for name in players
+        }
+    print("=== Achievements Tracker System ===\n")
+    for name, achievements in players_achievements.items():
+        print(f"Player {name}: ", end="")
+        print(achievements)
