@@ -25,10 +25,13 @@ def gen_player_achievements(
     if all_achievements:
         return achievements
     random_num_of_achievements = random.randint(1, len(achievements))
-    random_selection = random.sample(
-        list(achievements),
-        random_num_of_achievements
-    )
+    random_selection = []
+    i = 1
+    for achievement in achievements:
+        if i == random_num_of_achievements:
+            break
+        i += 1
+        random_selection.append(achievement)
     return set(random_selection)
 
 
@@ -51,9 +54,12 @@ def unique_achievement(
         not target_set or not players_achievements
     ):
         return set()
+    target_set_copy = target_set
     for a_set in players_achievements.values():
-        target_set.difference_update(a_set)
-    return target_set
+        if a_set == target_set_copy:
+            continue
+        target_set_copy.difference_update(a_set)
+    return target_set_copy
 
 
 def missing_achievements(
@@ -109,4 +115,4 @@ if __name__ == "__main__":
     print()
     for key, value in players_achievements.items():
         print(f"Only {key} has: ", end="")
-        print(unique_achievement())
+        print(unique_achievement(value, players_achievements))
