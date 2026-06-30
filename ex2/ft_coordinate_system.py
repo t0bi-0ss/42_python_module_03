@@ -1,4 +1,7 @@
 import math
+"""A module to take and store sets of three coordinates.
+It can print them and calculate distances between the center or
+ a different set of coordinates"""
 
 
 def get_player_pos() -> tuple[int, ...]:
