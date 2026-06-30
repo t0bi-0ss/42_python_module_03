@@ -116,3 +116,7 @@ if __name__ == "__main__":
     for key, value in players_achievements.items():
         print(f"Only {key} has: ", end="")
         print(unique_achievement(value, players_achievements))
+    print()
+    all_achievements_set = gen_player_achievements(True)
+    for key, value in players_achievements.items():
+        print(f"{key}")
