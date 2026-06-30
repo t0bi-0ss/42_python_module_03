@@ -11,5 +11,5 @@ if __name__ == "__main__":
         print(f"Arguments received: {len(sys.argv) - 1}")
         while (i < args):
             print(f"Argument {i}: {sys.argv[i]}")
-            i+=1
+            i += 1
     print(f"Total arguments: {len(sys.argv)}")
