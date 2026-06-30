@@ -23,13 +23,13 @@ def gen_player_achievements(all_achievements: bool = False) -> set:
     }
     if all_achievements:
         return achievements
-    return set(
-            sample(
-                list(achievements),
-                random.randint(
-                    1, achievements.len()
-                    )
-                )
-            )
+    random_num_of_achievements = random.randint(1, len(achievements))
+    random_selection = sample(
+        list(achievements),
+        random_num_of_achievements
+    )
+    return set(random_selection)
 
 
+if __name__ == "__main__":
+    print(gen_player_achievements())
