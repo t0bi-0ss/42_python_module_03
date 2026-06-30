@@ -4,6 +4,7 @@ import random
 
 
 def gen_player_achievements(all_achievements: bool = False) -> set[str]:
+    """Generate a random set of achievements for a player"""
     achievements = {
         'Crafting Genius',
         'Strategist',
@@ -30,6 +31,7 @@ def gen_player_achievements(all_achievements: bool = False) -> set[str]:
 
 
 def common_achievements(*achievements_sets: set[str]) -> set[str]:
+    """Find common achievements among passed sets"""
     if not achievements_sets:
         return set()
     return set.intersection(*achievements_sets)
@@ -39,6 +41,8 @@ def unique_achievement(
         target_set: set[str],
         *rest_of_sets: set[str]
         ) -> set[str]:
+    """Find unique achivement in target_set among
+    all other passed sets"""
     if (
         not target_set or not rest_of_sets
     ):
