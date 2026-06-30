@@ -69,13 +69,23 @@ def missing_achievements(
 
 
 def distinct_achievements(
-        *achievements_sets: set[str]
+        players_achievements: dict[str, set[str]]
         ) -> set[str]:
     if (
-        not achievements_sets
+        not players_achievements
     ):
         return set()
-    return set.union(achievements_sets)
+    return set.union(*players_achievements.values())
+
+
+def print_players_achievements(
+        players_achievements: dict[str, set[str]]
+        ) -> None:
+    if not players_achievements:
+        return
+    for name, achievements in players_achievements.items():
+        print(f"Player {name}: ", end="")
+        print(achievements)
 
 
 if __name__ == "__main__":
@@ -84,6 +94,8 @@ if __name__ == "__main__":
         name: gen_player_achievements() for name in players
         }
     print("=== Achievements Tracker System ===\n")
-    for name, achievements in players_achievements.items():
-        print(f"Player {name}: ", end="")
-        print(achievements)
+    print_players_achievements(players_achievements)
+    print(
+        "\nAll distinct achievements: ",
+        distinct_achievements(players_achievements)
+    )
