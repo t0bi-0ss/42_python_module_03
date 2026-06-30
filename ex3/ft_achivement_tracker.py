@@ -32,11 +32,13 @@ def gen_player_achievements(
     return set(random_selection)
 
 
-def common_achievements(*achievements_sets: set[str]) -> set[str]:
-    """Find common achievements among passed sets"""
-    if not achievements_sets:
+def common_achievements(
+        players_achievements: dict[str, set[str]]
+        ) -> set[str]:
+    """Find common achievements among the sets in passed dict"""
+    if not players_achievements:
         return set()
-    return set.intersection(*achievements_sets)
+    return set.intersection(*players_achievements.values())
 
 
 def unique_achievement(
@@ -98,4 +100,8 @@ if __name__ == "__main__":
     print(
         "\nAll distinct achievements: ",
         distinct_achievements(players_achievements)
+    )
+    print(
+        "\nCommon achievements: ",
+
     )
