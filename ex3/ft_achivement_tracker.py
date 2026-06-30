@@ -56,16 +56,26 @@ def unique_achievement(
 
 def missing_achievements(
         target_set: set[str],
-        achievemets_set: set[str]
+        all_achievemets_set: set[str]
         ) -> set[str]:
     """Finds missing achivements in target_set
     considering achievements_set"""
     if (
         not target_set
-        or not achievemets_set
+        or not all_achievemets_set
     ):
         return set()
-    return achievemets_set.difference(target_set)
+    return all_achievemets_set.difference(target_set)
+
+
+def distinct_achievements(
+        *achievements_sets: set[str]
+        ) -> set[str]:
+    if (
+        not achievements_sets
+    ):
+        return set()
+    return set.union(achievements_sets)
 
 
 if __name__ == "__main__":
