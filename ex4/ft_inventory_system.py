@@ -16,6 +16,11 @@ class RedundantItem(Exception):
         return f"{self.message}"
 
 
+def is_redundant(item_name: str, items_dict: dict[str, int]) -> None:
+    if item_name in items_dict:
+        raise RedundantItem(item_name)
+
+
 def main():
     """
     Organize inventory
