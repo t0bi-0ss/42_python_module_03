@@ -58,7 +58,7 @@ def is_invalid(parameter: str) -> None:
         raise InvalidParameter(parameter)
 
 
-def main():
+def main() -> None:
     """
     Organize inventory
     """
