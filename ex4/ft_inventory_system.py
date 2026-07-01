@@ -89,6 +89,62 @@ def main():
         else:
             items_dict[item_list[0]] = int(item_list[1])
 
+    print(
+        "Got inventory: ",
+        items_dict
+        )
+
+    print("\nItem list: ", end="")
+    items_list = [key for key in items_dict.keys()]
+    print(items_list)
+
+    total_quantity = 0
+    for value in items_dict.values():
+        total_quantity += value
+    print(
+        "\nTotal quantity of the",
+        len(item_list),
+        "items:",
+        total_quantity
+    )
+
+    print()
+    for key in items_dict.keys():
+        print(
+            f"Item {key} represents",
+            f"{items_dict[key]/total_quantity*100:.1f}%"
+        )
+
+    max_key: str = ""
+    max_quantity: int = 0
+    min_key: str = ""
+    min_quantity: float = float('inf')
+    for key in items_dict.keys():
+        if items_dict[key] > max_quantity:
+            max_quantity = items_dict[key]
+            max_key = key
+        if items_dict[key] < min_quantity:
+            min_quantity = items_dict[key]
+            min_key = key
+    print(
+        "\nItem most abundant:",
+        max_key,
+        "with quantity",
+        max_quantity
+        )
+    print(
+        "\nItem least abundant:",
+        min_key,
+        "with quantity",
+        min_quantity
+    )
+
+    items_dict.update({"magic_item": 1})
+    print(
+        "\nUpdated inventory",
+        items_dict
+    )
+
 
 if __name__ == "__main__":
     main()
