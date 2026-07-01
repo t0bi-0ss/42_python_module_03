@@ -5,7 +5,7 @@ import typing
 """Module to generate events"""
 
 
-def gen_event():
+def gen_event() -> typing.Generator[tuple[str, str], None, None]:
     """Generate a random event"""
     names_list: list[str] = ["bob", "alice", "dylan", "charlie"]
     actions_list: list[str] = [
@@ -23,4 +23,18 @@ def event_display(event_t: tuple[str, str]) -> None:
 
 
 def main() -> None:
+    print("=== Game Data Stream Processor ===\n")
+    for i in range(0, 1000):
+        print(
+            f"Event {i}: ", end=""
+        )
+        event_display(next(gen_event()))
+    event_tuples_list = [next(gen_event()) for i in range(0, 10)]
+    print(
+        "\nBuilt list of 10 events:",
+        event_tuples_list
+    )
 
+
+if __name__ == "__main__":
+    main()
