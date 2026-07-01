@@ -74,7 +74,7 @@ def main():
         try:
             is_invalid(item)
             item_list: list[str | int] = item.split(":")
-            is_redundant(item_list[0])
+            is_redundant(item_list[0], items_dict)
             int(item_list[1])
         except (InvalidParameter, RedundantItem, ValueError) as msg:
             print(msg)
