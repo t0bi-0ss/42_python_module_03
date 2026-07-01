@@ -63,21 +63,29 @@ def main():
     Organize inventory
     """
     print("=== Inventory System Analysis === \n")
+
     if len(sys.argv) < 2:
         print(
             "No items provided. Usage: python3 ft_inventory_system.py",
             " <item_name_1:quantity> <item_name_2:quantity> ...",
         )
         sys.exit()
+
     items_dict: dict[str, int] = {}
+
     for item in sys.argv[1:]:
         try:
             is_invalid(item)
             item_list: list[str | int] = item.split(":")
             is_redundant(item_list[0], items_dict)
             int(item_list[1])
-        except (InvalidParameter, RedundantItem, ValueError) as msg:
+        except (InvalidParameter, RedundantItem) as msg:
             print(msg)
+        except ValueError as msg:
+            print(
+                f"Quantity error for '{item_list[0]}':",
+                msg
+                )
         else:
             items_dict[item_list[0]] = int(item_list[1])
 
