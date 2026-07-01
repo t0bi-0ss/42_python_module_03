@@ -22,6 +22,12 @@ def event_display(event_t: tuple[str, str]) -> None:
     )
 
 
+def consume_event(
+        event_tuples_list: list[tuple[str, str]]
+        ) -> typing.Generator[tuple[str, str], None, None]:
+    yield event_tuples_list.remove(random.choice(event_tuples_list))
+
+
 def main() -> None:
     print("=== Game Data Stream Processor ===\n")
     for i in range(0, 1000):
@@ -29,7 +35,9 @@ def main() -> None:
             f"Event {i}: ", end=""
         )
         event_display(next(gen_event()))
-    event_tuples_list = [next(gen_event()) for i in range(0, 10)]
+    event_tuples_list: list[tuple[str, str]] = [
+        next(gen_event()) for i in range(0, 10)
+        ]
     print(
         "\nBuilt list of 10 events:",
         event_tuples_list
