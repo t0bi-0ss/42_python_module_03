@@ -25,7 +25,7 @@ def event_display(event_t: tuple[str, str]) -> None:
 def consume_event(
         event_tuples_list: list[tuple[str, str]]
         ) -> typing.Generator[tuple[str, str], None, None]:
-    yield event_tuples_list.remove(random.choice(event_tuples_list))
+    yield event_tuples_list.pop(random.randint(0, len(event_tuples_list) - 1))
 
 
 def main() -> None:
@@ -35,6 +35,7 @@ def main() -> None:
             f"Event {i}: ", end=""
         )
         event_display(next(gen_event()))
+
     event_tuples_list: list[tuple[str, str]] = [
         next(gen_event()) for i in range(0, 10)
         ]
@@ -42,6 +43,14 @@ def main() -> None:
         "\nBuilt list of 10 events:",
         event_tuples_list
     )
+
+    for i in range(0, 10):
+        print(
+            "Got event from list:",
+            next(consume_event(event_tuples_list)),
+            "\nRemains in list:",
+            event_tuples_list
+        )
 
 
 if __name__ == "__main__":
