@@ -20,7 +20,7 @@ class RedundantItem(WrongItem):
     """WrongItem error for redundant items"""
 
     def __init__(self, item_name: str) -> None:
-        if str:
+        if item_name:
             self.message: str = f"Redundant item '{item_name}' - discarding"
         else:
             self.message = None
@@ -29,6 +29,20 @@ class RedundantItem(WrongItem):
     def __str__(self) -> str:
         return f"{self.message}"
 
+
+class InvalidParameter(WrongItem):
+    """WrongItem error for invalid parameters"""
+
+    def __init__(self, parameter: str) -> None:
+        if parameter:
+            self.message: str = f"Error invalid parameter '{parameter}'"
+        else:
+            self.message = None
+        super().__init__(self.message)
+
+    def __str__(self) -> str:
+        return f"{self.message}"
+    
 
 def is_redundant(item_name: str, items_dict: dict[str, int]) -> None:
     """Checks if item_name already exists in items_dict"""
