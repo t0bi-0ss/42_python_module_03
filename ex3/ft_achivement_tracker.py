@@ -122,12 +122,26 @@ if __name__ == "__main__":
         print(f"{key} is missing: ", end="")
         print(missing_achievements(value, all_achievements_set))
 
-    print("=== Aditional comprobations ===")
+    print("\n=== Aditional comprobations ===")
     print("All achievements: ", end="")
     print(all_achievements_set)
     print("Total number of achievements is: ", len(all_achievements_set))
     print()
-    print("Individual player stats: ")
 
+    print("Individual player stats: ")
     for key, value in players_achievements.items():
-        print(f"{key} total achivements = ", len(value))
+        total_achievements = len(value)
+        num_of_missing_achievements = len(missing_achievements(
+            value, all_achievements_set
+            ))
+        print(
+            f"{key}:\n\ttotal achivements = ",
+            total_achievements,
+            "\n",
+            "\tmissing achievements = ",
+            num_of_missing_achievements,
+            "\n",
+            "\tsum of both = ",
+            f"{total_achievements} + {num_of_missing_achievements} = ",
+            (total_achievements + num_of_missing_achievements)
+            )
