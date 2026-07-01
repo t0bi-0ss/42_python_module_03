@@ -54,7 +54,7 @@ def unique_achievement(
         not target_set or not players_achievements
     ):
         return set()
-    target_set_copy = target_set
+    target_set_copy = target_set.copy()
     for a_set in players_achievements.values():
         if a_set == target_set_copy:
             continue
@@ -119,4 +119,15 @@ if __name__ == "__main__":
     print()
     all_achievements_set = gen_player_achievements(True)
     for key, value in players_achievements.items():
-        print(f"{key}")
+        print(f"{key} is missing: ", end="")
+        print(missing_achievements(value, all_achievements_set))
+
+    print("=== Aditional comprobations ===")
+    print("All achievements: ", end="")
+    print(all_achievements_set)
+    print("Total number of achievements is: ", len(all_achievements_set))
+    print()
+    print("Individual player stats: ")
+
+    for key, value in players_achievements.items():
+        print(f"{key} total achivements = ", len(value))
