@@ -42,7 +42,7 @@ class InvalidParameter(WrongItem):
 
     def __str__(self) -> str:
         return f"{self.message}"
-    
+
 
 def is_redundant(item_name: str, items_dict: dict[str, int]) -> None:
     """Checks if item_name already exists in items_dict"""
@@ -72,8 +72,14 @@ def main():
     items_dict: dict[str, int] = {}
     for item in sys.argv[1:]:
         try:
-            is
-        item_list: list[str | int] = item.split(":")
+            is_invalid(item)
+            item_list: list[str | int] = item.split(":")
+            is_redundant(item_list[0])
+            int(item_list[1])
+        except (InvalidParameter, RedundantItem, ValueError) as msg:
+            print(msg)
+        else:
+            items_dict[item_list[0]] = int(item_list[1])
 
 
 if __name__ == "__main__":
