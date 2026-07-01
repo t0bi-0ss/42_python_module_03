@@ -5,8 +5,9 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print(
             "No scores provided. Usage: python3 ft_score_analytics.py",
-            " <score1> <score2> ...",
+            " <int: score1> <int: score2> ...",
         )
+        sys.exit()
     scores = []
     for item in sys.argv[1:]:
         try:
@@ -17,8 +18,8 @@ if __name__ == "__main__":
             print(f"Invalid parameter: '{item}'")
     if not len(scores):
         print(
-            "No scores provided. Usage: python3 ft_score_analytics.py",
-            " <score1> <score2> ...",
+            "No valid scores provided. Usage: python3 ft_score_analytics.py",
+            " <int: score1> <int: score2> ...",
         )
     else:
         print(scores)
