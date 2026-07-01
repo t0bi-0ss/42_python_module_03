@@ -5,11 +5,25 @@ A module to organize an inventory of items
 """
 
 
-class RedundantItem(Exception):
-    """A basic error for redundant items"""
+class WrongItem(Exception):
+    """A basic error for wrong items"""
+
+    def __init__(self, message: str = "Unspecified WrongItem error") -> None:
+        self.message: str = message
+        super().__init__(self.message)
+
+    def __str__(self) -> str:
+        return f"{self.message}"
+
+
+class RedundantItem(WrongItem):
+    """WrongItem error for redundant items"""
 
     def __init__(self, item_name: str) -> None:
-        self.message: str = f"Redundant item '{item_name}' - discarding"
+        if str:
+            self.message: str = f"Redundant item '{item_name}' - discarding"
+        else:
+            self.message = None
         super().__init__(self.message)
 
     def __str__(self) -> str:
@@ -17,10 +31,13 @@ class RedundantItem(Exception):
 
 
 def is_redundant(item_name: str, items_dict: dict[str, int]) -> None:
+    """Checks if item_name already exists in items_dict"""
     if item_name in items_dict:
         raise RedundantItem(item_name)
 
 
+
+def 
 def main():
     """
     Organize inventory
@@ -34,7 +51,7 @@ def main():
         sys.exit()
     items_dict: dict[str, int] = {}
     for item in sys.argv[1:]:
-        item_list: list[str, int] = item.split(":")
+        item_list: list[str | int] = item.split(":")
 
 
 if __name__ == "__main__":
