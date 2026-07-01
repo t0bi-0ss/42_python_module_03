@@ -50,8 +50,14 @@ def is_redundant(item_name: str, items_dict: dict[str, int]) -> None:
         raise RedundantItem(item_name)
 
 
+def is_invalid(parameter: str) -> None:
+    """Checks if parameter's syntax is valid"""
 
-def 
+    parameter_list = parameter.split(":")
+    if len(parameter_list) != 2:
+        raise InvalidParameter(parameter)
+
+
 def main():
     """
     Organize inventory
@@ -65,6 +71,8 @@ def main():
         sys.exit()
     items_dict: dict[str, int] = {}
     for item in sys.argv[1:]:
+        try:
+            is
         item_list: list[str | int] = item.split(":")
 
 
