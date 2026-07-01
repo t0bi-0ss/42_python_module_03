@@ -7,7 +7,7 @@ def gen_player_achievements(
         all_achievements: bool = False
         ) -> set[str]:
     """Generate a random set of achievements for a player"""
-    achievements = {
+    achievements = [
         'Crafting Genius',
         'Strategist',
         'World Savior',
@@ -21,9 +21,9 @@ def gen_player_achievements(
         'Untouchable',
         'Sharp Mind',
         'Boss Slayer'
-    }
+    ]
     if all_achievements:
-        return achievements
+        return set(achievements)
     random_num_of_achievements = random.randint(1, len(achievements))
     random_selection = []
     i = 1
@@ -123,7 +123,7 @@ if __name__ == "__main__":
         print(missing_achievements(value, all_achievements_set))
 
     print("\n=== Aditional comprobations ===")
-    print("All achievements: ", end="")
+    print("\nAll achievements: ", end="")
     print(all_achievements_set)
     print("Total number of achievements is: ", len(all_achievements_set))
     print()
