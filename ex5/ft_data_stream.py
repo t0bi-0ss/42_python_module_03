@@ -6,10 +6,21 @@ import typing
 
 
 def gen_event():
+    """Generate a random event"""
     names_list: list[str] = ["bob", "alice", "dylan", "charlie"]
     actions_list: list[str] = [
         "run", "eat", "grab", "sleep", "move", "climb", "swim", "release"
         ]
     yield (random.choice(names_list), random.choice(actions_list))
 
+
+def event_display(event_t: tuple[str, str]) -> None:
+    """Display event"""
+    print(
+        f"Player {event_t[0]}",
+        f"did action {event_t[1]}"
+    )
+
+
+def main() -> None:
 
