@@ -20,7 +20,6 @@ def get_player_pos() -> tuple[float, ...]:
             while i < len(coordinates_l):
                 coordinates_f.append(float(coordinates_l[i]))
                 i += 1
-            break
         except ZeroDivisionError:
             print("Error: No coordinates were passed")
         except ValueError:
@@ -28,12 +27,18 @@ def get_player_pos() -> tuple[float, ...]:
                 f"Error on parameter '{coordinates_l[i]}': "
                 "could not convert string to float: "
                 + f"'{coordinates_l[i]}'")
-        if (len(coordinates_l)) < 3:
-            print("Error: less than 3 coordinates were passed")
-            continue
-        elif len(coordinates_l) > 3:
-            print("Error: more than 3 coordinates were passed")
-            continue
+            coordinates_f.clear()
+        else:
+            if len(coordinates_f) == 3:
+                break
+            if (len(coordinates_l)) < 3:
+                print("Error: less than 3 coordinates were passed")
+                coordinates_f.clear()
+                continue
+            elif len(coordinates_l) > 3:
+                print("Error: more than 3 coordinates were passed")
+                coordinates_f.clear()
+                continue
     return tuple(coordinates_f)
 
 
