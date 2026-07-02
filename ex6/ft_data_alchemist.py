@@ -54,16 +54,98 @@ def players_dict_builder(
     if range_max <= 0:
         print("Range max and min can't be 0 or negative")
         return {}
+    if range_max <= range_min:
+        print("Range max must be grater than range_min")
+        return {}
     for s in player_names:
         try:
-            s.capitalize()
-        except ValueError as msg:
+            s + "abc"
+        except TypeError as msg:
             print(
                 "Error: player_names must be list[str] only:",
                 msg
             )
             return {}
-    return {name: random.randint(0, range_max) for name in player_names}
+    return {name: random.randint(range_min, range_max)
+            for name in player_names}
 
 
-def greater_dict_builder()
+def high_scores_builder(
+        score_dict: dict[str, int], average: int
+    ) -> dict[str, int]:
+    """Builds a dict from score_dict with keys that correspond to values
+    greater than average"""
+    if not score_dict:
+        return {}
+    try:
+        average + 1
+    except TypeError as msg:
+        print(
+            "Error: average must be an int:", msg
+        )
+        return {}
+    for key in score_dict.keys():
+        try:
+            key + "abc"
+        except ValueError as msg:
+            print(
+                "Error: all keys in score_dict must be strings:", msg
+            )
+            return {}
+    for value in score_dict.values():
+        try:
+            value + 1
+        except TypeError as msg:
+            print(
+                "Error: all values in score_dict must be ints:", msg
+            )
+            return {}
+    return {key: value for key, value in score_dict.items() if value > average}
+
+
+def main() -> None:
+
+    names_list = [
+        'Alice', 'bob', 'Charlie', 'dylan',
+        'Emma', 'Gregory', 'john', 'kevin', 'Liam'
+        ]
+
+    print("=== Game Data Alchemist ===\n")
+    print(
+        "Initial list of players:",
+        names_list,
+        "\n"
+    )
+
+    capitalized_list = capitalized_list_builder(names_list)
+    print(
+        "New list with all names capitalized:",
+        capitalized_list,
+        "\n"
+    )
+
+    only_capitalized_list = only_capitalized_list_builder(names_list)
+    print(
+        "New list of capitalized names only:",
+        only_capitalized_list,
+        "\n"
+    )
+
+    score_dict = players_dict_builder(names_list, 1000)
+    print(
+        "Score dict:",
+        score_dict,
+        "\n"
+    )
+
+    score_average = sum(score_dict.values()) / len(score_dict)
+    print(
+        f"Score average is {score_average:.2f}"
+    )
+
+
+
+
+
+if __name__ == "__main__":
+    main()
