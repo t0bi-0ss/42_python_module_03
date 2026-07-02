@@ -4,8 +4,9 @@ It can print them and calculate distances between the center or
  a different set of coordinates"""
 
 
-def get_player_pos() -> tuple[int, ...]:
+def get_player_pos() -> tuple[float, ...]:
     """Takes coordinates of a player's position validating the input data"""
+    coordinates_f = []
     while True:
         coordinates = input("Enter new coordinates"
                             + " as floats in format 'x,y,z': ")
@@ -15,25 +16,25 @@ def get_player_pos() -> tuple[int, ...]:
         try:
             1 / len(coordinates.split())
             i = 0
-            coordinates = coordinates.split(",")
+            coordinates_l = coordinates.split(",")
             while i < len(coordinates):
-                coordinates[i] = float(coordinates[i])
+                coordinates_f.append(float(coordinates_l[i]))
                 i += 1
             break
         except ZeroDivisionError:
             print("Error: No coordinates were passed")
         except ValueError:
             print(
-                f"Error on parameter '{coordinates[i]}': "
+                f"Error on parameter '{coordinates_l[i]}': "
                 "could not convert string to float: "
-                + f"'{coordinates[i]}'")
-    if (len(coordinates)) < 3:
-        print("Error: less than 3 coordinates were passed")
-        coordinates = get_player_pos()
-    elif len(coordinates) > 3:
-        print("Error: more than 3 coordinates were passed")
-        coordinates = get_player_pos()
-    return tuple(coordinates)
+                + f"'{coordinates_l[i]}'")
+        if (len(coordinates_l)) < 3:
+            print("Error: less than 3 coordinates were passed")
+            continue
+        elif len(coordinates_l) > 3:
+            print("Error: more than 3 coordinates were passed")
+            continue
+    return tuple(coordinates_f)
 
 
 def distance_to_center(coordinates: tuple[float, ...]) -> float:
