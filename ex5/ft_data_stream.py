@@ -11,7 +11,8 @@ def gen_event() -> typing.Generator[tuple[str, str], None, None]:
     actions_list: list[str] = [
         "run", "eat", "grab", "sleep", "move", "climb", "swim", "release"
         ]
-    yield (random.choice(names_list), random.choice(actions_list))
+    while True:
+        yield (random.choice(names_list), random.choice(actions_list))
 
 
 def event_display(event_t: tuple[str, str]) -> None:
@@ -26,9 +27,9 @@ def consume_event(
         event_tuples_list: list[tuple[str, str]]
         ) -> typing.Generator[tuple[str, str], None, None]:
     """Generator that consumes an event from a list and yields it"""
-    if not event_tuples_list:
-        return None
-    yield event_tuples_list.pop(random.randint(0, len(event_tuples_list) - 1))
+    while event_tuples_list:
+        chosen_index = random.randint(0, len(event_tuples_list) - 1)
+        yield event_tuples_list.pop(chosen_index)
 
 
 def print_n_events(n: int) -> None:
@@ -57,24 +58,6 @@ def event_list_builder(n: int) -> list[tuple[str, str]]:
     return event_list
 
 
-def event_consumer(n: int, event_tuple_list: list[tuple[str, str]]) -> None:
-    """Consumes n events from event_tuple_list"""
-    if n <= 0:
-        print("\nNumber of events to consume can't be 0 or negative")
-        return None
-    if not event_tuple_list:
-        print("\nNo event to consume: event_tuple_list is already empty")
-        return None
-    print(
-        "\nGot event from list:",
-        next(consume_event(event_tuple_list)),
-        "\nRemains in list:",
-        event_tuple_list
-    )
-    if n-1 > 0:
-        event_consumer(n-1, event_tuple_list)
-
-
 def main() -> None:
     print("=== Game Data Stream Processor ===\n")
 
@@ -84,7 +67,10 @@ def main() -> None:
     event_tuples_list: list[tuple[str, str]] = event_list_builder(10)
 
     print("\n----> Start consuming events <----")
-    event_consumer(12, event_tuples_list)
+    consume_ev = consume_event(event_tuples_list)
+    for event in consume_ev:
+        print(f"\nGot event from list: {event}")
+        print(f"Remains in list: {event_tuples_list}")
 
 
 if __name__ == "__main__":
