@@ -57,23 +57,34 @@ def event_list_builder(n: int) -> tuple[str, str]:
     return event_list
 
 
+def event_consumer(n: int, event_tuple_list: list[tuple[str, str]]) -> None:
+    """Consumes n events from event_tuple_list"""
+    if n <= 0:
+        print("\nNumber of events to consume can't be 0 or negative")
+        return None
+    if not event_tuple_list:
+        print("\nNo event to consume: event_tuple_list is already empty")
+        return None
+    print(
+        "\nGot event from list:",
+        next(consume_event(event_tuple_list)),
+        "\nRemains in list:",
+        event_tuple_list
+    )
+    if n-1 > 0:
+        event_consumer(n-1, event_tuple_list)
+
+
 def main() -> None:
     print("=== Game Data Stream Processor ===\n")
 
     print_n_events(1000)
 
+    print("\n----> Build list <----")
     event_tuples_list: list[tuple[str, str]] = event_list_builder(10)
 
-    for i in range(0, 12):
-        if event_tuples_list:
-            print(
-                "Got event from list:",
-                next(consume_event(event_tuples_list)),
-                "\nRemains in list:",
-                event_tuples_list
-            )
-        else:
-            print("No event to consume: empty list")
+    print("\n----> Start consuming events <----")
+    event_consumer(12, event_tuples_list)
 
 
 if __name__ == "__main__":
