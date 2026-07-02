@@ -72,7 +72,7 @@ def players_dict_builder(
 
 def high_scores_builder(
         score_dict: dict[str, int], average: int
-    ) -> dict[str, int]:
+        ) -> dict[str, int]:
     """Builds a dict from score_dict with keys that correspond to values
     greater than average"""
     if not score_dict:
@@ -131,7 +131,7 @@ def main() -> None:
         "\n"
     )
 
-    score_dict = players_dict_builder(names_list, 1000)
+    score_dict = players_dict_builder(capitalized_list, 1000)
     print(
         "Score dict:",
         score_dict,
@@ -140,11 +140,14 @@ def main() -> None:
 
     score_average = sum(score_dict.values()) / len(score_dict)
     print(
-        f"Score average is {score_average:.2f}"
+        f"Score average is {score_average:.2f}\n"
     )
 
-
-
+    high_scores = high_scores_builder(score_dict, score_average)
+    print(
+        "High scores:",
+        high_scores
+    )
 
 
 if __name__ == "__main__":
