@@ -33,11 +33,17 @@ def consume_event(
 
 def print_n_events(n: int) -> None:
     """Print n number of events"""
+    if n <= 0:
+        print("Number of events can't be 0 or negative")
+        return
     for i in range(0, n):
         print(
             f"Event {i}: ", end=""
         )
         event_display(next(gen_event()))
+
+
+def event_list_builder(n: int):
 
 
 def main() -> None:
