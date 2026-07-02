@@ -31,13 +31,19 @@ def consume_event(
     yield event_tuples_list.pop(random.randint(0, len(event_tuples_list) - 1))
 
 
-def main() -> None:
-    print("=== Game Data Stream Processor ===\n")
-    for i in range(0, 1000):
+def print_n_events(n: int) -> None:
+    """Print n number of events"""
+    for i in range(0, n):
         print(
             f"Event {i}: ", end=""
         )
         event_display(next(gen_event()))
+
+
+def main() -> None:
+    print("=== Game Data Stream Processor ===\n")
+
+    print_n_events(1000)
 
     event_tuples_list: list[tuple[str, str]] = [
         next(gen_event()) for i in range(0, 10)
