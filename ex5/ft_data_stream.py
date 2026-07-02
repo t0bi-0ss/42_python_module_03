@@ -43,7 +43,18 @@ def print_n_events(n: int) -> None:
         event_display(next(gen_event()))
 
 
-def event_list_builder(n: int):
+def event_list_builder(n: int) -> tuple[str, str]:
+    """Builds a list of n event tuples"""
+    if n <= 0:
+        print("Number of event tuples can't be 0 or negative")
+    event_list = [
+        next(gen_event()) for i in range(0, n)
+    ]
+    print(
+        f"\nBuilt list of {n} events:",
+        event_list
+    )
+    return event_list
 
 
 def main() -> None:
@@ -51,13 +62,7 @@ def main() -> None:
 
     print_n_events(1000)
 
-    event_tuples_list: list[tuple[str, str]] = [
-        next(gen_event()) for i in range(0, 10)
-        ]
-    print(
-        "\nBuilt list of 10 events:",
-        event_tuples_list
-    )
+    event_tuples_list: list[tuple[str, str]] = event_list_builder(10)
 
     for i in range(0, 12):
         if event_tuples_list:
