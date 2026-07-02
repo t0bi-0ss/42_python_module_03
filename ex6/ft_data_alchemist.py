@@ -71,7 +71,7 @@ def players_dict_builder(
 
 
 def high_scores_builder(
-        score_dict: dict[str, int], average: int
+        score_dict: dict[str, int], average: float
         ) -> dict[str, int]:
     """Builds a dict from score_dict with keys that correspond to values
     greater than average"""
@@ -81,7 +81,7 @@ def high_scores_builder(
         average + 1
     except TypeError as msg:
         print(
-            "Error: average must be an int:", msg
+            "Error: average must be a float:", msg
         )
         return {}
     for key in score_dict.keys():

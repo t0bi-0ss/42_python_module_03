@@ -23,7 +23,7 @@ class RedundantItem(WrongItem):
         if item_name:
             self.message: str = f"Redundant item '{item_name}' - discarding"
         else:
-            self.message = None
+            self.message = ""
         super().__init__(self.message)
 
     def __str__(self) -> str:
@@ -37,7 +37,7 @@ class InvalidParameter(WrongItem):
         if parameter:
             self.message: str = f"Error invalid parameter '{parameter}'"
         else:
-            self.message = None
+            self.message = ""
         super().__init__(self.message)
 
     def __str__(self) -> str:
@@ -76,7 +76,7 @@ def main() -> None:
     for item in sys.argv[1:]:
         try:
             is_invalid(item)
-            item_list: list[str | int] = item.split(":")
+            item_list: list[str] = item.split(":")
             is_redundant(item_list[0], items_dict)
             int(item_list[1])
         except (InvalidParameter, RedundantItem) as msg:

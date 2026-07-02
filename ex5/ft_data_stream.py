@@ -43,7 +43,7 @@ def print_n_events(n: int) -> None:
         event_display(next(gen_event()))
 
 
-def event_list_builder(n: int) -> tuple[str, str]:
+def event_list_builder(n: int) -> list[tuple[str, str]]:
     """Builds a list of n event tuples"""
     if n <= 0:
         print("Number of event tuples can't be 0 or negative")
