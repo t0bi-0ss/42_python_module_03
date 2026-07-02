@@ -17,7 +17,7 @@ def get_player_pos() -> tuple[float, ...]:
             1 / len(coordinates.split())
             i = 0
             coordinates_l = coordinates.split(",")
-            while i < len(coordinates):
+            while i < len(coordinates_l):
                 coordinates_f.append(float(coordinates_l[i]))
                 i += 1
             break
