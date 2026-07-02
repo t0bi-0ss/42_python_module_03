@@ -25,6 +25,9 @@ def event_display(event_t: tuple[str, str]) -> None:
 def consume_event(
         event_tuples_list: list[tuple[str, str]]
         ) -> typing.Generator[tuple[str, str], None, None]:
+    """Generator that consumes an event from a list and yields it"""
+    if not event_tuples_list:
+        return None
     yield event_tuples_list.pop(random.randint(0, len(event_tuples_list) - 1))
 
 
@@ -44,13 +47,16 @@ def main() -> None:
         event_tuples_list
     )
 
-    for i in range(0, 10):
-        print(
-            "Got event from list:",
-            next(consume_event(event_tuples_list)),
-            "\nRemains in list:",
-            event_tuples_list
-        )
+    for i in range(0, 12):
+        if event_tuples_list:
+            print(
+                "Got event from list:",
+                next(consume_event(event_tuples_list)),
+                "\nRemains in list:",
+                event_tuples_list
+            )
+        else:
+            print("No event to consume: empty list")
 
 
 if __name__ == "__main__":
