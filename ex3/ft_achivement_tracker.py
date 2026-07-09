@@ -25,14 +25,7 @@ def gen_player_achievements(
     if all_achievements:
         return set(achievements)
     random_num_of_achievements = random.randint(1, len(achievements))
-    random_selection = []
-    i = 1
-    for achievement in achievements:
-        if i == random_num_of_achievements:
-            break
-        i += 1
-        random_selection.append(achievement)
-    return set(random_selection)
+    return set(random.choices(achievements, k=random_num_of_achievements))
 
 
 def common_achievements(
